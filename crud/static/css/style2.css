@@ -1,0 +1,191 @@
+body {
+  background: url("https://lh3.googleusercontent.com/pw/AM-JKLUqkc-5_4LR4_rYpuOeGwIyvyb6V9s-7K0DYGHQqfah3LYo2bSA_j23rG5GJ7li6M2HdtPZhWRwtHUMg3WutELDkRFb9R6py2zLZ4G3AWpBKQRHDDMhND7UCCdAcAJDbooRsSen1gUqP7yU5pG6lPtf=w924-h577-no?authuser=0" ) no-repeat center fixed ;
+  background-size:cover;
+}
+
+label{
+  display: inline-block;
+  background-color: indigo;
+  color: white;
+  padding: 0.5rem;
+  font-family: sans-serif;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.navbar-nav a{
+    color: rgb(0, 0, 0) !important;
+    font-size:large;
+    font-weight: 400;
+  }
+
+  .nav-item.btn {
+    position: relative ;
+    width: auto;
+    padding-block: 1px;
+    line-height: 0.9;
+    color: rgb(10, 46, 3);
+    margin: 4px;
+    opacity: 0.9;
+  } 
+
+  .navbar-toggler {
+    background-color:rgba(83, 185, 55, 0.318)
+  }
+
+.dropdown-menu.show{
+  border: 1px solid rgba(142, 216, 38, 0.44);
+  background-color: rgba(96, 150, 10, 0.407);
+}
+
+
+
+.accordion-item{
+  background-color: rgba(0, 0, 0, 0);
+}
+.accordion-button{
+  background-color: rgba(0, 0, 0, 0);
+}
+.accordion-button:not(.collapsed){
+  border: 1px solid rgba(142, 216, 38, 0.44);
+  background-color: rgba(96, 150, 10, 0.407);
+  color:black
+}
+.accordion-button:hover{
+  background-color: #b2ff4e49;
+}
+.accordion{
+  background-color:rgba(84, 134, 31, 0.251);
+}
+
+.btn2{
+
+  border: 1px solid rgba(38, 136, 216, 0.111);
+  background-color: rgba(223, 38, 38, 0.407);
+}
+
+
+.btn-outline-success{
+background-color: rgb(255, 255, 0);
+color: rgb(0, 0, 0);
+}
+
+  .btn {
+    border: 1px solid rgba(142, 216, 38, 0.111);
+    background-color: rgba(96, 150, 10, 0.407);
+  }
+
+.tipo1 {
+  border: 1px solid rgba(142, 216, 38, 0.111);
+  background-color: rgba(96, 150, 10, 0.407);
+  color:black;
+  line-height: 1.15;
+  opacity: 0.8;
+  border: 1px solid rgba(0, 0, 0, 0.21);
+}   
+.tipo1:hover {
+  background-color: #b2ff4e49;
+  color:rgb(0, 0, 0);
+}
+.tipo1:hover:not(:focus){
+  box-shadow: 0px 0px 10px 3px rgba(155, 215, 14, 0.436);
+  background-color: rgba(142, 203, 11, 0.527);
+}
+
+
+.tipo2 {
+  border: 5px solid rgba(0, 0, 0, 0.111);
+  border-radius: 10%;
+  line-height: 1.15;
+}   
+.tipo2:hover {
+  background-color: #00000049;
+  color:rgb(0, 0, 0);
+}
+.tipo2:hover:not(:focus){
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.436);
+  background-color: rgba(0, 0, 0, 0.527);
+}
+
+
+.btn:hover {
+  background-color: #b2ff4e49;
+  color:rgb(0, 0, 0);
+}
+
+ul{
+  list-style-type:none;
+  }
+li{
+  list-style-type:none;
+}
+
+  .form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: rgba(0, 0, 0, 0.74);
+    font-style: italic;
+  }
+  
+  .form-control{
+    background-color: rgba(96, 150, 10, 0.407);
+    border-color: rgba(43, 58, 11, 0.718);
+    color:black;
+    
+  }
+  .form-control.placeholder{
+    color:black !important;
+    
+  }
+  
+  .form-control:hover:not(:focus){
+    box-shadow: 0px 0px 3px 3px rgba(148, 193, 45, 0.325);
+    background: rgba(245, 245, 220, 0);
+ }
+  
+  .form-control:focus:not(:hover) {
+    box-shadow: 5px 2px 2px 2px rgba(18, 208, 85, 0.447);
+    background-color: rgb(112, 212, 31) important!;
+ }
+
+ .flagf{
+   border-color: black;
+ }
+
+ .checkbox-custom {
+  opacity: 0;
+  position: absolute;
+}
+.checkbox-custom,
+.checkbox-custom-label {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 5px;
+  cursor: pointer;
+}
+.checkbox-custom + .checkbox-custom-label:before {
+  content: '';
+  background: rgba(146, 207, 40, 0.616);
+  border-radius: 5px;
+  border: 2px solid rgba(220, 230, 203, 0.115);
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+.checkbox-custom:checked + .checkbox-custom-label:before {
+  content: '';
+  background: rgba(33, 72, 14, 0.448);
+  border-radius: 5px;
+  border: 2px solid rgba(80, 131, 44, 0.625);
+  display: inline-block;
+  vertical-align: middle;
+  width: 15px;
+  height: 15px;
+  margin-right: 5px;
+}
+
+.card-body:hover:not(:focus){
+  box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.436);
+  background-color: rgba(0, 0, 0, 0.527);
+}

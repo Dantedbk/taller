@@ -1,0 +1,168 @@
+{% extends "plantillaBase2.html" %}
+{% load static %}
+{% load mathfilters %}
+{% block tituloPestana %}
+    aaaaaaaaaaaa
+{% endblock %}
+{% block btncarro %}
+<button type="button" class="btn btn2 btnModalCarro mx-3" data-bs-toggle="modal"
+data-bs-target="#modalCarro" onclick="tt_venta()"> Carro </button>
+{% endblock %}
+
+{% block contenido %}
+<script src="{% static 'js/catalogo.js' %}" async></script>
+
+<form method="POST" action="{% url 'catalogo' %}" style="background-color:#31303a3e;min-height: 650px ">
+
+  <section class="p-5 ">
+<div class="container py-0 p-5 mb-4"  >
+  <div class="row text-center g-4">
+  <!-- #############################################  CARD START #################################################### -->
+    {% for fila in listado %}
+
+
+    <div class="col-md-4" >
+      <div class="card hvr shadow" href="producto.html" style="border:10px double #000000a8;background-color:hsla(247, 10%, 18%, 0.675) ;">
+        <h class="p-1 py-0 mb-0" style="text-align: left;text-decoration: underline;">En stock: {{ fila.stock }}</h>
+        <div class="card-body text-center txt1">
+          <div >
+            <h3 class="card-title mb-0" style="font-weight:600">{{ fila.nombre }}<br></h3>
+            <h class="py-0 mb-0 mt-0" style="font-size:20px;font-weight: 400;">{{ fila.marca }}</h>
+            <div class="h1 mb-3 mt-2 ">
+              
+              <img src="static/img/{{ fila.imagen }}" class="text-center w-50 mt-0 tipo2 " style="outline:#73818b9d 3px solid">
+
+              <a href="{% url 'producto' %}" class="stretched-link modalProducto" data-bs-toggle="modal"
+              data-bs-target="#modalProducto" onclick="getElementById('imgProducto').src='static/img/{{ fila.imagen }}'
+                                                    getElementById('productoNombre').innerHTML='{{ fila.nombre }}'
+                                                    getElementById('productoMarca').innerHTML='{{ fila.marca }}'
+                                                    getElementById('productoDescripcion').innerHTML='{{ fila.descripcion }}'
+                                                    getElementById('productoPrecioVenta').innerHTML='{{ fila.precioVenta }}'
+                                                    getElementById('productoPrecioVenta').value='{{ fila.precioVenta }}'
+                                                    getElementById('btnPedir').value = '{{fila.id}}'
+                                                    getElementById('')
+                                                    "></a>
+
+            </div>
+          </div>
+          <div class="p-1" >
+            <p class="card-text pb-2" style="min-height:70px;border-bottom:#2d2e32 solid 1px;">{{ fila.descripcion }}</p>
+            
+            <h5 style="display: inline-block">$</h5>
+            <h5 class="precio" style="display: inline-block" id="precio"> {{ fila.precioVenta }} </h5>
+          </div>
+        </div>
+      </div>
+      <div class="text-center mt-1 shadow">
+      </div>
+    </div>
+    {% endfor %}
+  <!-- #############################################  CARD END #################################################### -->
+
+
+
+  <div class="modal blur fade my-5" id="modalCarro" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content" style="min-width:550px;background: #46484f38;">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Carro de Compras</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+
+          {% block listado4 %}
+          {% if listado4 %}
+          <div class="row justify-content-center m-2">
+              <table class="table-borderless" style="border: 0px solid;">
+                  <tr>
+                      <th>Nombre</th>
+                      <th>Cantidad</th>
+                      <th>Unidad</th>
+                      <th>Subtotal/item</th>
+                  </tr>
+                  {% for fila in listado4 %}
+                  <tr class="spaceUnder">
+                      <td >{{ fila.productos.nombre }}</td>
+                      <td>{{ fila.cantidad }}</td>
+                      <td>${{fila.productos.precioVenta}}</td>       
+                      <td class="tt_item" >${{fila.productos.precioVenta|mul:fila.cantidad}}</td>
+
+                      <td><input type="button" class="btn btn2 btnSeleccionar"
+                        name="btnSeleccionar" value="Seleccionar" 
+                        onclick="document.getElementById('txtId').value = '{{ fila.id }}'"></td>
+
+                  </tr> 
+                  
+                        
+                  {% endfor %}
+                  <tr class="spaceUnder"><td><h5 id="tt_venta"> Total: </h5></td> </tr>
+                  <input type="input" name="txtId" id="txtId" class="txtId form-control" value="aa" hidden>
+
+              </table>
+              {% endif %}
+          </div>
+          {% endblock %}
+ 
+        </div>
+        <div class="modal-footer">
+          <button type="submit" name="btnEliminar" class="btn btn2 btn-text-center btnEliminar" 
+          data-bs-dismiss="modal" id="btnEliminar">Eliminar</button>
+          <button type="button" class="btn btn2" onclick="tt_venta()">Pagar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  
+  <div class="modal fade blur my-5" id="modalProducto" tabindex="-1" aria-labelledby="modalProducto"
+  aria-hidden="true" style="min-height:800px">
+  <div class="modal-dialog">
+      <div class="modal-content" style="min-width:550px;background: #03030376;border:5px black solid">
+          <div class="modal-header" style="border:0px black solid">
+              <h5 class="modalProducto txt1" id="modalProducto">Detalles</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"
+                  aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="row mb-2 ">
+                      <div class="col-md-6 mx-3" style="text-align:left;background-color: rgba(0, 0, 0, 0.259); border-radius: 2%;">
+                        <h3 class=" mb-0 txt1" id="productoNombre" style="font-weight:600"><br></h3>
+                        <div class="col-md-12 mb-4 txt1"  ><h class="txt2 mb-0">Marca:</h> <h class="mb-5" id="productoMarca" style="font-size:20px;font-weight: 400;"></h></div>
+                        <div class="col-md-12 mt-3 mb-4 txt1"  ><h class="txt2 mb-0">Descripcion:</h><br><h style="font-weight: 300;" id="productoDescripcion" ></h></div>
+                        <div class="col-md-12 mt-3 mb-4 txt1"  ><h class="txt2 mb-0">Precio: </h> $<h  id="productoPrecioVenta" style="font-weight: 500;" value="productoPrecioVenta"></h></h></div>
+
+                        
+
+                        <div class="row mb-3">
+                          {% if user.is_authenticated %}
+                          {% csrf_token %} 
+                          <p1 class="">Cantidad:</p1>
+                          <div class="col-md-5"  ><input type="text" name="txtCantidad" id="txtCantidad"
+                            class="txtCantidad form-control txtRut tipo1" maxlength="2" value="0"></div>
+                          <div class="col-md-3"  >   
+                            <button type="submit" name="btnPedir" id="btnPedir" class="btn btn2 btnPedir" onclick="modificar()" >Agregar o cambiar</button></div>
+                          {% else %}
+                          <p style="text-align:center">Se debe iniciar sesión para agendar.</p>
+                          <a class="btn btn2 mx-auto" href="{% url 'home' %}" style="width:50%;">Volver</a>
+
+                            {% endif %}
+                        </div>
+
+                      </div>
+
+                        <div class="col my-auto" style="outline:1px solid black;background-color: white;border-radius: 3%;">
+                        <img src="" id="imgProducto" class=" w-100 mt-0 tipo2" >
+                        </div>
+              </div>
+          </div>
+
+
+
+
+        </form>
+
+
+</section>
+{% endblock %}

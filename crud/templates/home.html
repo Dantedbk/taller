@@ -1,0 +1,227 @@
+{% extends "plantillaBase2.html" %}
+{% load static %}
+
+{# definir contenidos de los bloques declarados en la plantilla base #}
+
+{% block tituloPestana %}
+    Home
+{% endblock %}
+
+
+{% block registro %}
+
+{% if user.is_authenticated %}
+
+{% else %}
+
+
+<form method='POST' class="nav-item dropdown offset-8" style="position:absolute">
+  {% csrf_token %}
+  <ul class="menu">
+    <li>
+      <a class="btn btn2 offset-11 px-4" data-bs-toggle="modal" data-bs-target="#exampleModal" >&nbsp;Ingresar</a>
+<!-- Modal -->
+<div class="modal greencard" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+    <div class="modal-content" style="background-color:#ba141400">
+      <div class="modal-body">
+        <button type="button" class="btn-close btn-close-white float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="container-fluid">
+
+          <div class="row">
+      
+            <div class="col-md-12">
+                <input type="text" id="txtUsuario" name="txtUsuario" class="txtUsuario form-control tipo1 shadow" maxlength="50"
+                  placeholder="Id. Usuario:" >
+        </div>
+      
+            <div class="col-md-12 mt-2">
+                <input type="password" id="txtContrasena" name="txtContrasena" class="txtContrasena form-control tipo1 shadow" maxlength="50" placeholder="Contraseña:">
+        </div>
+
+
+            <div class="col-md-3 m-2">
+              <a  class="btn btn2" href="{% url 'registro' %}" action="{%url 'registro' %}"> Registrarse </a>
+        </div>
+            <div class="col-md-3 ms-auto m-2 px-4 mb-3">
+                <button  type="submit" name="btnGuardar" id="btnGuardar" class=" btn btn2 btnGuardar"  value="btnGuardar" >Entrar</button>
+        </div>
+      
+          </div>
+          </div>
+  </div>
+</div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+</form>
+{% endif %}
+{% endblock %}
+
+{% block contenido %}
+<div class="container-fluid p-5" style="background:#14132c21;min-height:500px">
+
+  <div class="container" style="width:90%">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="3000">
+          <div class="row g-4">
+            <div class="col-md">
+              <div class="text-light">
+                <div class="card-body shadow my-5"
+                  style="border:double 10px #000000d5;position:relative;background:#3f3c4384;">
+                  <div class="h1 mb-3"> <img src="{% static 'img/autoql.jpg' %}" class="mx-auto my-auto d-block" style="outline:solid 4px #00000093"> </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="txt2">
+                <div class="card-body my-5" style="width: auto">
+                  <h1>wiwiwi </h1> <br>
+                  <p class="txt1" style="position:absolute">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Maiores
+                    optio, nulla reiciendis
+                    veniam quisquam voluptatum est illo delectus ducimus ullam?</p> <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="3000">
+          <div class="row g-4">
+            <div class="col-md">
+              <div class="text-light">
+                <div class="card-body shadow my-5"
+                style="border:double 10px #000000d5;position:relative;background:#3f3c4384;">
+                  <div class="h1 mb-3"><img src="{% static 'img\autoql2.jpg' %}"" class="mx-auto my-auto d-block"
+                    style="outline:solid 4px #00000093"
+                      alt="..."></div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="txt2">
+                <div class="card-body  my-5" style="width: auto">
+
+                  <h1>ajá </h1> <br>
+                  <p class="txt1" style="position:absolute">Lorem ipsum dolor, sit amet consectetur adipisicing elit.</p> <br>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="3000">
+          <div class="row g-4">
+            <div class="col-md">
+              <div class="text-light">
+                <div class="card-body shadow my-5"
+                style="border:double 10px #000000d5;position:relative;background:#3f3c4384;">
+                  <div class="h1 mb-3"> <img src="{% static 'img/autoql3.jpg' %}"
+                      class="mx-auto my-auto d-block" alt="..."
+                      style="outline:solid 4px #00000093"> </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="txt2">
+                <div class="card-body my-5" style="width: auto">
+                  <h1>c: </h1> <br>
+                  <p class="txt1" style="position:absolute">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Atque,
+                    doloribus ullam quas quis
+                    repellendus provident in neque nam id mollitia hic odit consectetur adipisci doloremque
+                    ratione perspiciatis, dignissimos veritatis. Voluptatum.</p> <br>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleDark"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+      <span class="carousel-control-next-icon " aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+
+    </div>
+    
+  </div>
+</div>
+
+</div>
+<!-- #############################################  END CAROUSEL ################################################# -->
+
+<div class="container-fluid p-5 greencard">
+  <h4 id="scrollspyHeading2"></h4>
+
+<div class="row">
+<div class="col-sm-1"></div>
+<div class="col-sm py-5">
+  <h1 style="color:rgb(255, 250, 245)">
+  Nosotros:
+  </h1><h5 class="pb-3 text-light" style="color:rgb(255, 250, 245)">Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
+    Quia est velit repudiandae ex consequatur neque earum quasi aspernatur incidunt necessitatibus 
+    debitis architecto delectus illum aliquam sit nisi nihil, commodi quas.</h5>
+    
+    <div class="row pt-5 px-5 " style="background-color: #111618c2;border:double 10px rgb(0, 0, 0);min-height: 500px;">
+      <div class="col-sm-6 pt-5">
+        <h8 style="color:rgb(255, 250, 245);text-align: center;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi quasi officia modi, recusandae temporibus numquam iure qui debitis laudantium enim molestiae nesciunt mollitia similique asperiores? Voluptatibus pariatur minima vero dolorem repudiandae eius temporibus, optio in veniam ullam quisquam sint reprehenderit fugiat magnam odio quibusdam exercitationem ab aspernatur officiis autem nostrum et reiciendis repellat quis. Dolores a dolore praesentium consequuntur voluptates sint aliquam necessitatibus pariatur ad ratione! Ut cumque voluptate autem.</h8>     
+            <div>
+              
+
+
+              {% if user.is_authenticated %}
+              
+              <div class="row mb-2 my-5">
+                <div class="col-md-2  px-2"><h3 style="color:rgba(207, 209, 240, 0.832)">Suscribirse</h3> </div>
+            <div class="col-md-5 offset-2">
+              <select class="form-select tipo1 form1">
+                <option value="0">Monto</option>
+                <option value="1">$2.000</option>
+                <option value="2">$5.000</option>
+                <option value="3">$15.000</option>
+              </select>
+            </div>
+                <div class="col-md-2 mx-0 "><button type="button" class="btn btn2 flagd shadow">Aceptar</button></div>
+            </div>
+          
+              {% else %}
+
+                  <a href="{% url 'registro' %}" class="btn btn2 d-block my-5 shadow" style="width:200px">
+                  Agendar</a>
+
+              {% endif%}
+
+            
+            
+            </div>
+      </div>
+
+
+
+      <div class="col-sm-6 pb-5">
+
+        <img src="{% static 'img/cat.jpg' %}" class="mx-auto my-auto d-block shadow btn2" style="width:90%"alt="">
+
+      </div>
+    </div>
+</div>
+<div class="col-sm-1">
+
+</div>
+</div>
+
+
+</div>
+
+{% endblock %}

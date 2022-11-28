@@ -1,0 +1,137 @@
+
+{# comentario si es requerido #}
+{% extends "plantillaBase2.html" %}
+{% load static %}
+
+{# definir contenidos de los bloques declarados en la plantilla base #}
+
+{% block tituloPestana %}
+    C.R.U.D. catalogo
+{% endblock %}
+
+{% block boton%}
+
+        <li class="nav-item">
+        <li class="nav-item ">
+            <a class="nav-link btn tipo1 mx-1 my-1 btnAct" name="btnAct" id="switch" onclick="updatep()"> cambiar a USD</a>
+        </li>
+        </li>
+{% endblock %}
+
+{% block mensajes %}
+{% if exito %}
+    <div class="alert alert-success" role="alert">
+    {{ exito }}
+  </div> 
+{% endif %}
+{% if error %}
+    <div class="alert alert-danger" role="alert">
+    {{ error }}
+  </div> 
+{% endif %}
+{% endblock %}
+
+{% block contenido %}
+{# #} 
+
+    <form method="POST" action="{% url 'catalogo' %}">
+        {% csrf_token %} 
+        <div class="row g-4 col-md-11">
+            <div class="col-md">
+                <div class="text-dark">
+                    <div class="card-body">
+                        <div class="row mb-2">
+                            <div class="col-md-2 offset-md-2">
+                                Nombre
+                            </div>
+                            <div class="col-md-2 col-md-6">
+                                <input type="text" name="txtRut" class="txtRut form-control"
+                                    style="background-color: rgba(121, 210, 69, 0.118);" maxlength="8"
+                                    placeholder="Ej: naruto" title="Ingrese su nombre">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-2 offset-md-2">
+                                Destino
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="txtNombre" class="txtNombre form-control"
+                                    style="background-color: rgba(121, 210, 69, 0.118);" maxlength="50"
+                                    placeholder="Ej: Los cactus 123" title="Ingrese su direccion">
+                            </div>
+                        </div>
+    
+                        <div class="row mb-2">
+                            <div class="col-md-2 offset-md-2">
+                                Comuna
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="" class=" form-control"
+                                    style="background-color: rgba(121, 210, 69, 0.118);" maxlength="50"
+                                    placeholder="Ej: Maipú" title="Ingrese su comuna">
+                            </div>
+                        </div>
+    
+                        <div class="row mb-2">
+                            <div class="col-md-2 offset-md-2">
+                                Correo electronico
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="txtCorreo" class="txtCorreo form-control"
+                                    style="background-color: rgba(121, 210, 69, 0.118);" maxlength="50"
+                                    placeholder="Ej: juan_f@**mail.com" title="Ingrese su correo electronico/mail">
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-md-2 offset-md-2">
+                                Informacion adicional
+                            </div>
+                            <div class="col-md-6">
+                                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            </div>
+                        </div>
+    
+                        <div class="row">
+    
+                            <div class="col-md-6">
+                                <input type="submit" name="btnLimpiar"
+                                    class="btnLimpiar btn btn-outline-secondary float-end"
+                                    style="border-color: rgba(48, 83, 8, 0.821);"
+                                    title="Limpia el formulario de información que este escrita" value="Borrar">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="col-md">
+                <div class="text-dark">
+                    <div class="card-body" style="width: auto">
+                        <div class="mb-3 ">
+                            <img src="{% static 'img/c4.svg' %}" class=" w-50 my-auto d-block"
+                                style="border: 5px solid rgba(80, 111, 32, 0.51); background-color: rgba(43, 67, 19, 0.132);"
+                                alt="...">
+                            cantidad: 1
+                        </div>
+                        <div class="mb-3">
+                            Codigo promocional
+                            <div class="row mb-2">
+    
+                                <div class="col-md-6">
+                                    <input type="text" name="txtCorreo" class="txtCorreo form-control"
+                                        style="background-color: rgba(121, 210, 69, 0.118);" maxlength="50"
+                                        placeholder="Ej: 12345asd" disabled>
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" type="checkbox" role="switch"
+                                            id="flexSwitchCheckDefault">
+                                    </div>
+                                    <button class="btn">proceder al pago</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      
+{% endblock %}

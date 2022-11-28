@@ -1,0 +1,133 @@
+
+{% extends "plantillaBase2.html" %}
+{% load static %}
+{% load mathfilters %}
+{% block tituloPestana %}
+    aaaaaaaaaaaa
+{% endblock %}
+
+
+
+{% block contenido %}
+<div class="container-fluid p-5" style="background:#14132c21;min-height:500px">
+
+    <h1 class="txt1 mb-5">Generar boleta/factura</h1>
+    <div class="block">
+        <label class="mx-5 mb-4"><h5>Cliente</h5></label>
+        <input type="text" id="txtUsuario" name="txtUsuario" class="txtUsuario form-123 tipo1 shadow" maxlength="50"
+        placeholder="Rut:" >
+    </div>
+    <div class="block">
+        <label class="mx-5 mb-4"><h5>Empleado</h5></label>
+        <input type="text" id="txtUsuario" name="txtUsuario" class="txtUsuario form-123 tipo1 shadow" maxlength="50"
+        placeholder="Código" >
+    </div>
+    <div class="block">
+        <label class="mx-5 mb-4"><h5>Servicio</h5></label>
+        <button type="button" class="btn btn2 btnPedir" data-bs-toggle="modal"
+        data-bs-target="#modalProducto">
+        Escoger </button>
+
+
+                        
+        <div class="modal blur fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProducto"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" style="min-width:550px;background: #08050e73;color:aliceblue">
+                <div class="modal-header" style="border-bottom:0px" >
+                    <h5 class="modalProducto" id="btnModalProducto">Seleccionar Servicio</h5>
+
+                        <a  data-bs-dismiss="modal" class="btn btn2  m-1">Continuar</a>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+
+
+                        <div class="row justify-content-center m-2">
+                            <table class="table-borderless" >
+                                <tr>
+                                    <th>id</th>
+                                    <th>Nombre</th>
+                                    <th>Seleccionar</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                                {% for fila in listado %}
+                                <tr class="spaceUnder" >
+                                    <td>{{ fila.id }}</td>
+                                    <td>{{ fila.nombre }}</td>
+                                    <td><label class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                      </label></td>
+                                    <td>        <input type="text" id="txtUsuario" name="txtUsuario" class="txtUsuario form-123 tipo1 shadow" 
+                                        placeholder="$.." style="width:100px"></td>
+
+                                </tr>
+
+                                {% endfor %}
+                            </table>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+<div class="modal blur fade" id="modalProducto" tabindex="-1" aria-labelledby="modalProducto"
+                            aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content" style="min-width:550px;background: #a5a58276;">
+                                    <div class="modal-header" style="border-bottom:0px" >
+                                        <h5 class="modalProducto" id="modalProducto">Crear/Seleccionar Producto</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
+
+                                            {% block listado3 %}
+                                            {% if listado3 %}
+                                            <div class="row justify-content-center m-2">
+                                                <table class="table-borderless" >
+                                                    <tr>
+                                                        <th>id</th>
+                                                        <th>Nombre</th>
+                                                        <th>Precio</th>
+                                                        <th>Seleccionar</th>
+                                                    </tr>
+                                                    {% for fila in listado3 %}
+                                                    <tr class="spaceUnder" >
+                                                        <td>{{ fila.id }}</td>
+                                                        <td>{{ fila.nombre }}</td>
+                                                        <td>${{ fila.precioCosto }}</td>
+                                                        
+                                                        <td><a onclick="document.getElementById('txtNombre').value = '{{ fila.nombre }}';
+                                                                        document.getElementById('txtDescripcion').value = '{{ fila.descripcion }}';
+                                                                        
+                                                                        " data-bs-dismiss="modal"
+                                                                class="btn btn2  m-1">Seleccionar</a></td>
+                                                    </tr>
+
+                                                    {% endfor %}
+                                                </table>
+                                                {% endif %}
+                                            </div>
+                                            {% endblock %}
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+        </div>
+        {% endblock %}
