@@ -9,7 +9,7 @@ body {
   font-weight: 300;
   font-size: 20px;
   letter-spacing: 3px;
-  border-bottom: double 10px #000000d5;
+  border-bottom: solid 5px #000000d5;
 }
 
 h3 {
@@ -34,7 +34,7 @@ label {
 .greencard {
   background-color: #0000006f;
   min-height: 800px;
-  border-top: #3a3c3f 15px solid;
+  border-top: #3a3c3f 7px solid;
   backdrop-filter: blur(5px);
 }
 
@@ -59,16 +59,16 @@ li {
 
 
 .btn2:hover {
-  background-color: #2a2638d5;
-  border: double 5px rgb(34, 36, 49);
+  background-color: #2a2638ea;
+  border: solid 3px rgb(34, 36, 49);
   transition: all .15s ease;
   color: rgb(255, 255, 255);
 }
 
 .btn2 {
-  border-radius: 2%;
-  background-color: #2423286f;
-  border: double 5px #000000d5;
+  border-radius: 3%;
+  background-color: #1a181fb7;
+  border: solid 3px #000000d5;
   color: rgb(239, 237, 221);
 }
 
@@ -83,7 +83,7 @@ li {
 
 input[readonly] {
   background-color: #2a2638d5;
-  border: double 5px rgb(34, 36, 49);
+  border: solid 2px rgb(34, 36, 49);
   border-color: rgba(46, 53, 155, 0.718);
   border-radius: 3% !important;
   text-align: center;
@@ -97,10 +97,10 @@ input[readonly] {
 }
 .form-control {
   background-color: #201e2873;
-  border: double 5px rgb(34, 36, 49);
+  border: solid 2px rgb(34, 36, 49);
   border-color: rgba(0, 0, 0, 0.718);
   border-radius: 3% !important;
-
+color:white
 }
 .form-control:hover:not(:focus) {
   box-shadow: 0px 0px 3px 3px #3843457c;
@@ -196,7 +196,7 @@ tr.spaceUnder>td {
 
 .form-select {
   background-color: #1e0f0f38;
-  border: double 5px rgba(78, 83, 88, 0.773);
+  border: solid 2px rgba(78, 83, 88, 0.773);
   border-radius: 2%;
 
 }
@@ -254,7 +254,7 @@ tr.spaceUnder>td {
   opacity: 1;
   transform: translateY(0);
   z-index: 10;
-  border: double 5px rgba(78, 86, 88, 0.773);
+  border: solid 2px rgba(78, 86, 88, 0.773);
 }
 
 .menu ul a {
@@ -302,9 +302,10 @@ label {
 }
 .form-123 {
   background-color: #201e2873;
-  border: double 5px rgb(34, 36, 49);
+  border: solid 2px rgb(34, 36, 49);
   border-color: rgba(0, 0, 0, 0.718);
   border-radius: 3% !important;
+  color:white
 
 }
 .form-123:hover:not(:focus) {

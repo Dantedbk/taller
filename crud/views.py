@@ -1,7 +1,7 @@
 from django.contrib import auth
 from django.shortcuts import render,redirect
 from django.urls import reverse
-from crud.models import Categoria,Producto, Usuario, Marca,Carro
+from crud.models import Categoria,Producto, Usuario, Marca,Carro,Servicio
 from django.contrib.auth.models import User
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
@@ -98,34 +98,13 @@ def carro(request):
 
 def catalogo(request):
 
-    if request.user.is_authenticated:
-        user = User.objects.get(id=request.user.id)
-
 
     contexto = {}
 
-    listado = Producto.objects.all()
+    listado = Servicio.objects.all()
     
-    if request.method == 'POST':
 
-        if 'btnPedir' in request.POST:
-            cantidad = request.POST['txtCantidad']
-            
-            producto = Producto.objects.get(id=request.POST['btnPedir'])
-
-            if Carro.objects.filter(productos=producto).exists():
-                foo = Carro.objects.get(productos=producto)
-                foo.cantidad = int(cantidad)
-                foo.save()
-            else:
-                Carro.objects.create(id_usuario = user,productos = producto,cantidad = cantidad, activo = True)
-
-        if 'btnEliminar' in request.POST:
-            carro = Carro.objects.get(id = request.POST['txtId'])
-            carro.delete()
-    listado4 = Carro.objects.all()
-    contexto = {'listado': listado,
-                'listado4': listado4}
+    contexto = {'listado': listado}
 
 
     return render(request, 'catalogo.html', contexto)
@@ -134,6 +113,86 @@ def catalogo(request):
 
 
 def registroServicios(request):
+
+
+    listado = Producto.objects.all()
+    listado2 = Servicio.objects.all()
+
+    contexto = {}
+
+    contexto = {'listado': listado,
+                'listado2': listado2}
+
+    if request.method == 'POST':
+        print(request.POST)
+
+        # producto ----------------------------------------------------------------------------------
+        idProducto = request.POST['txtIdProducto']
+        nombreProducto = request.POST['txtNombreProducto']
+        precioCosto = request.POST['txtprecioCostoProducto']
+        precioVenta = request.POST['txtPrecioVentaProducto']
+        stock = request.POST['txtStock']
+        categoria = request.POST['txtCategoria']
+        descripcion = request.POST['txtDescripcionProducto']
+
+        # producto ----------------------------------------------------------------------------------
+
+        # servicio  ------------------------------------------------------------------------------------
+
+        idServicio      = int("0" + request.POST['txtIdServicio'])
+        nombreServicio  = request.POST['txtNombreServicio']
+        precioBaseServicio  = request.POST['txtprecioBaseServicio']
+        DescripcionServicio  = request.POST['txtDescripcionServicio']
+
+        idServicio = int("0" + request.POST['txtIdServicio'])
+        idProducto = int("0" + request.POST['txtIdProducto'])
+
+
+        if len(request.FILES) != 0:
+            imagen = request.FILES['imagenServicio']
+
+        if 'btnGuardarp' in request.POST: 
+            if idProducto < 1:
+                Producto.objects.create(nombre=nombreProducto, 
+                                        precioCosto=precioCosto,
+                                        stock = stock,
+                                        precioVenta=precioVenta,
+                                        categoria=categoria, 
+                                        descripcion=descripcion)
+            else: 
+                item = Producto.objects.get(pk = idProducto) # busca 1 elemento que coincida con el pk o id
+                item.nombreProducto = nombreProducto
+                item.precioCosto=precioCosto
+                item.precioVenta=precioVenta
+                item.stock = stock
+                item.categoria=categoria
+                item.descripcion=descripcion
+                item.save()
+    
+        elif 'btnGuardarServicio' in request.POST: # detecta si el guardar fue presionado
+            if idServicio < 1:
+                Servicio.objects.create(nombre = nombreServicio,
+                                        valor = precioBaseServicio,
+                                        descripcion = DescripcionServicio,
+                                        imagen = imagen)
+            else:
+                item = Servicio.objects.get(pk = idServicio) # busca 1 elemento que coincida con el pk o id
+                item.nombreServicio = nombreServicio,
+                item.precioBaseServicio = precioBaseServicio,
+                item.DescripcionServicio = DescripcionServicio,
+                item.imagen = imagen,
+                item.save()
+
+        elif 'btnEliminarServicio' in request.POST:
+            item = Servicio.objects.get(pk = idServicio) # busca 1 elemento que coincida con el pk o id
+            item.delete()
+
+        elif 'btnEliminarProducto' in request.POST:
+            item = Producto.objects.get(pk = idProducto) # busca 1 elemento que coincida con el pk o id
+            item.delete()
+
+
+
 
     return render(request, 'registroservicios.html',{})
 
@@ -222,103 +281,7 @@ def registro(request):
 
 def registroProducto(request):
 
-
-    listado = Marca.objects.all()
-    listado2 = Categoria.objects.all()
-    listado3 = Producto.objects.all()
-
-    contexto = {}
-
-    contexto = {'listado': listado,
-                'listado2': listado2,
-                'listado3': listado3}
-
-    if request.method == 'POST':
-        print(request.POST)
-        # captura de datos, obtenidos desde el formulario (plantilla)
-            
-        codBar = random.random()
-        nombre = request.POST['txtNombre']
-        precioCosto = request.POST['txtprecioCosto']
-        precioVenta = request.POST['txtPrecioVenta']
-        marca = request.POST['txtMarca']
-        categoria = request.POST['txtCategoria']
-        descripcion = request.POST['txtDescripcion']
-        stock = request.POST['txtStock']
-
-        # producto ----------------------------------------------------------------------------------
-
-        # Marca  ------------------------------------------------------------------------------------
-
-        idMarca      = int("0" + request.POST['txtIdMarca'])
-        nombreMarca  = request.POST['txtNombreMarcaEditar']    
-        activoMarca = False
-
-        idCategoria      = int("0" + request.POST['txtIdCategoria'])
-        nombreCategoria  = request.POST['txtNombreCategoriaEditar']    
-        activoCategoria = False
-
-        idProducto = int("0" + request.POST['txtId'])
-
-
-        if request.POST.get('chkActivoMarca', False):
-            activoMarca = True
-
-        if request.POST.get('chkActivoCategoria', False):
-            activoCategoria = True
-
-        if len(request.FILES) != 0:
-            imagen = request.FILES['imagen']
-
-        if 'btnGuardarp' in request.POST: 
-            if idProducto < 1:
-                Producto.objects.create( codBarra = codBar, nombre=nombre, precioCosto=precioCosto,stock = stock,
-                                        precioVenta=precioVenta, marca=marca,categoria=categoria, descripcion=descripcion,
-                                        imagen=imagen)
-            else: 
-                item = Producto.objects.get(pk = idProducto) # busca 1 elemento que coincida con el pk o id
-                item.nombre = nombre
-                item.codBarra = codBar
-                item.precioCosto=precioCosto
-                item.precioVenta=precioVenta
-                item.marca=marca
-                item.stock = stock
-                item.categoria=categoria
-                item.descripcion=descripcion
-                item.imagen=imagen
-                item.save()
-    
-        elif 'btnGuardarMarca' in request.POST: # detecta si el guardar fue presionado
-            if idMarca < 1:
-                Marca.objects.create(nombre = nombreMarca, activo = activoMarca)
-            else:
-                item = Marca.objects.get(pk = idMarca) # busca 1 elemento que coincida con el pk o id
-                item.nombre = nombreMarca
-                item.activo = activoMarca
-                item.save()
-
-        elif 'btnEliminarMarca' in request.POST:
-            item = Marca.objects.get(pk = idMarca) # busca 1 elemento que coincida con el pk o id
-            item.delete()
-
-        elif 'btnGuardarCategoria' in request.POST: # detecta si el guardar fue presionado
-            if idCategoria < 1:
-                Categoria.objects.create(nombre = nombreCategoria, activo = activoCategoria)
-            else:
-                item = Categoria.objects.get(pk = idCategoria) # busca 1 elemento que coincida con el pk o id
-                item.nombre = nombreCategoria
-                item.activo = activoCategoria
-                item.save()
-
-        elif 'btnEliminarCategoria' in request.POST:
-            item = Categoria.objects.get(pk = idCategoria) # busca 1 elemento que coincida con el pk o id
-            item.delete()
-
-        elif 'btnEliminarProducto' in request.POST:
-            item = Producto.objects.get(pk = idProducto) # busca 1 elemento que coincida con el pk o id
-            item.delete()
-
-    return render(request, 'registroproducto.html', contexto)
+    return render(request, 'registroproducto.html')
 
 
 

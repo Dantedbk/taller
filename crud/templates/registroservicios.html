@@ -26,7 +26,7 @@ Registro Servicios
 {% block contenido %}
 {# #}
 
-<form method="POST" action="{% url 'registroproducto' %}" enctype="multipart/form-data">
+<form method="POST" action="{% url 'registroservicios' %}" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="container-fluid" style="background-color:#4744554f;min-height: 700px;color:aliceblue">
@@ -56,14 +56,14 @@ Registro Servicios
                         <div class="col-sm-2">
                         </div>
                         <div class="col-sm-7 ">
-                            <input type="hidden" name="txtId" id="txtId" class="txtId form-control" value="{{ item.id }}">
+                            <input type="hidden" name="txtIdServicio" id="txtIdServicio" class="txtIdServicio form-control" value="{{ item.id }}">
                             <div class="row mb-2">
                                 <div class="col-md-2 offset-md-2 px-1">
                                     Nombre:
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" id="txtNombre" name="txtNombre"
-                                        class="txtNombre form-control formLetras tipo1" maxlength="50">
+                                    <input type="text" id="txtNombreServicio" name="txtNombreServicio"
+                                        class="txtNombreServicio form-control formLetras tipo1" maxlength="50" placeholder="">
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -72,9 +72,9 @@ Registro Servicios
                                     Hora trabajo:
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" id="txtprecioCosto" name="txtprecioCosto "
-                                        class="txtprecioCosto form-control txtRut tipo1" maxlength="50"
-                                        value="{{ item.precioCosto }}" placeholder=" ">
+                                    <input type="text" id="txtprecioBaseServicio" name="txtprecioBaseServicio "
+                                        class="txtprecioBaseServicio form-control txtRut tipo1" maxlength="50"
+                                        value="{{ item.txtprecioBaseServicio }}" placeholder=" ">
                                 </div>
                             </div>
         
@@ -85,8 +85,8 @@ Registro Servicios
                                     Informacion adicional:
                                 </div>
                                 <div class="col-md-7">
-                                    <textarea class="form-control tipo1 txtDescripcion" id="txtDescripcion" rows="3"
-                                        id="txtDescripcion" name="txtDescripcion" value="{{ item.txtDescripcion }} "
+                                    <textarea class="form-control tipo1 txtDescripcionServicio" id="txtDescripcionServicio" rows="3"
+                                        id="txtDescripcionServicio" name="txtDescripcionServicio" value="{{ item.txtDescripcionServicio }} "
                                         placeholder=" "></textarea>
                                 </div>
                             </div>
@@ -96,11 +96,11 @@ Registro Servicios
                                     Imagen:
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="file" id="imagen" name="imagen" accept="image/*" class="imagen pb-3"
-                                        value="{{ item.imagen }}">
+                                    <input type="file" id="imagenServicio" name="imagenServicio" accept="image/*" class="imagenServicio pb-3"
+                                        value="{{ item.imagenServicio }}">
         
-                                    <button type="submit" id="btnGuardarp" name="btnGuardarp"
-                                        class="btn tipo1 float-end btnGuardarp btn2" value="Guardar">Aceptar</button>
+                                    <button type="submit" id="btnGuardarServicio" name="btnGuardarServicio"
+                                        class="btn tipo1 float-end btnGuardarServicio btn2" value="Guardar">Guardar</button>
         
                                     <button type="button" class="btn btn2" data-bs-toggle="modal"
                                         data-bs-target="#modalProducto">
@@ -110,14 +110,10 @@ Registro Servicios
                                     <button type="submit" id="btnEliminarProducto" name="btnEliminarProducto"
                                         class="btn tipo1 btn2" style="background-color:rgba(136, 68, 4, 0.667)"
                                         value="Guardar">Borrar</button>
-        
-        
                                 </div>
                             </div>
                         </div>
                     </div>
-                
-
                 </div>
 
 
@@ -148,14 +144,14 @@ Registro Servicios
                         <div class="col-sm-2">
                         </div>
                         <div class="col-sm-7 ">
-                            <input type="hidden" name="txtId" id="txtId" class="txtId form-control" value="{{ item.id }}">
+                            <input type="hidden" name="txtIdProducto" id="txtIdProducto" class="txtIdProducto form-control" value="{{ item.id }}">
                             <div class="row mb-2">
                                 <div class="col-md-2 offset-md-2 px-1">
                                     Nombre:
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" id="txtNombre" name="txtNombre"
-                                        class="txtNombre form-control formLetras tipo1" maxlength="50">
+                                    <input type="text" id="txtNombreProducto" name="txtNombreProducto"
+                                        class="txtNombreProducto form-control formLetras tipo1" maxlength="50">
                                 </div>
                             </div>
                             <div class="row mb-2">
@@ -163,8 +159,8 @@ Registro Servicios
                                     P. Costo:
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" id="txtprecioCosto" name="txtprecioCosto "
-                                        class="txtprecioCosto form-control txtRut tipo1" maxlength="50"
+                                    <input type="text" id="txtprecioCostoProducto" name="txtprecioCostoProducto "
+                                        class="txtprecioCostoProducto form-control txtRut tipo1" maxlength="50"
                                         value="{{ item.precioCosto }}" placeholder=" ">
                                 </div>
                             </div>
@@ -173,8 +169,8 @@ Registro Servicios
                                     P. Venta:
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="text" name="txtPrecioVenta" id="txtPrecioVenta"
-                                        class="txtPrecioVenta form-control txtRut tipo1" placeholder=" " maxlength="50"
+                                    <input type="text" name="txtPrecioVentaProducto" id="txtPrecioVentaProducto"
+                                        class="txtPrecioVentaProducto form-control txtRut tipo1" placeholder=" " maxlength="50"
                                         value="{{ item.precioVenta }}">
                                 </div>
                             </div>
@@ -188,7 +184,8 @@ Registro Servicios
                                         value="{{ item.stock }}">
                                 </div>
                             </div>
-        
+        <script>function getIndex() {document.getElementById("txtCategoria").value = document.getElementById("catSelect").value;}</script>
+        <input hidden type="text" name="txtCategoria" id="txtCategoria" class="txtCategoria form-control">                        
         
                             <div class="row mb-2 ">
                                 <div class="col-md-2 offset-md-2 px-1">
@@ -196,11 +193,13 @@ Registro Servicios
                                 </div>
         
                                 <div class="col-md-5 ">
-                                    <select class="form-select" style="color:aliceblue;background-color:rgba(0, 0, 0, 0.673)" aria-label="Default select example">
-                                        <option selected>Seleccionar</option>
-                                        <option value="1">Herramientas</option>
-                                        <option value="2">Insumos</option>
-                                        <option value="3">Repuestos</option>
+                                    <select type="text" name="foo" id="catSelect" class="form-select" 
+                                    style="color:aliceblue;background-color:rgba(0, 0, 0, 0.673)" onclick="getIndex()" 
+                                    aria-label="Default select example" >
+                                        <option   disabled selected hidden>Seleccionar</option>
+                                        <option  value="Herramientas">Herramientas</option>
+                                        <option  value="Insumos">Insumos</option>
+                                        <option   value="Repuestos">Repuestos</option>
                                       </select>
                                 </div>
                             </div>
@@ -209,19 +208,18 @@ Registro Servicios
                                     Informacion adicional:
                                 </div>
                                 <div class="col-md-7">
-                                    <textarea class="form-control tipo1 txtDescripcion" id="txtDescripcion" rows="3"
-                                        id="txtDescripcion" name="txtDescripcion" value="{{ item.txtDescripcion }} "
+                                    <textarea class="form-control tipo1 txtDescripcionProducto" id="txtDescripcionProducto" rows="3"
+                                        id="txtDescripcionProducto" name="txtDescripcionProducto" value="{{ item.txtDescripcionProducto }} "
                                         placeholder=" "></textarea>
                                 </div>
                             </div>
         
                             <div class="row mb-2">
                                 <div class="col-md-2 offset-md-2 px-1">
-                                    Imagen:
+                                    
                                 </div>
                                 <div class="col-md-7">
-                                    <input type="file" id="imagen" name="imagen" accept="image/*" class="imagen pb-3"
-                                        value="{{ item.imagen }}">
+
         
                                     <button type="submit" id="btnGuardarp" name="btnGuardarp"
                                         class="btn tipo1 float-end btnGuardarp btn2" value="Guardar">Aceptar</button>

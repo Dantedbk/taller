@@ -180,27 +180,14 @@
               
 
 
-              {% if user.is_authenticated %}
+
               
               <div class="row mb-2 my-5">
-                <div class="col-md-2  px-2"><h3 style="color:rgba(207, 209, 240, 0.832)">Suscribirse</h3> </div>
-            <div class="col-md-5 offset-2">
-              <select class="form-select tipo1 form1">
-                <option value="0">Monto</option>
-                <option value="1">$2.000</option>
-                <option value="2">$5.000</option>
-                <option value="3">$15.000</option>
-              </select>
+            <div class="col-md-1 offset-2">
             </div>
-                <div class="col-md-2 mx-0 "><button type="button" class="btn btn2 flagd shadow">Aceptar</button></div>
-            </div>
+                <a  class="btn btn2" href="{% url 'agenda' %}" action="{%url 'agenda' %}"> Agendar </a>
+              </div>
           
-              {% else %}
-
-                  <a href="{% url 'registro' %}" class="btn btn2 d-block my-5 shadow" style="width:200px">
-                  Agendar</a>
-
-              {% endif%}
 
             
             

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Categoria, Marca, Subscripcion, TipoPago, Usuario,Producto,TipoUsuario,Carro,Documento,detalleDocumento
+from .models import Categoria, Marca, Subscripcion, TipoPago, Usuario,Producto,TipoUsuario,Carro,Documento,detalleDocumento,Servicio
 
 
 class UsuarioAdmin(admin.ModelAdmin):
@@ -7,7 +7,7 @@ class UsuarioAdmin(admin.ModelAdmin):
     list_filter  = ['id','rut']
 
 class ProductoAdmin(admin.ModelAdmin):
-    list_display = ['id','nombre','precioCosto','precioVenta','categoria','imagen']
+    list_display = ['id','nombre','precioCosto','precioVenta','categoria']
     list_filter  = ['id']
 
 class TipoUsuarioAdmin(admin.ModelAdmin):
@@ -39,14 +39,14 @@ class DocumentoAdmin(admin.ModelAdmin):
     list_display = ['nDocumento','tipo','fecha']
     list_filter = ['nDocumento']
 
-
-
 class detalleDocumentoAdmin(admin.ModelAdmin):
     list_display = ['id','id_usuario','nDocumento','id_cliente','cantidad','producto']
     list_filter = ['nDocumento']
 
+class DetalleServicio(admin.ModelAdmin):
+    list_display = ['nombre','valor','descripcion','imagen']
+    list_filter = ['id','nombre']
 
-    
 # Register your models here.
 admin.site.register(Usuario, UsuarioAdmin)
 admin.site.register(Producto, ProductoAdmin)
@@ -58,3 +58,4 @@ admin.site.register(Categoria, CategoriaAdmin)
 admin.site.register(Subscripcion, SubscripcionAdmin)
 admin.site.register(Documento,DocumentoAdmin)
 admin.site.register(detalleDocumento,detalleDocumentoAdmin)
+admin.site.register(Servicio,DetalleServicio)

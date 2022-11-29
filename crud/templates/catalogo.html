@@ -23,37 +23,19 @@ data-bs-target="#modalCarro" onclick="tt_venta()"> Carro </button>
 
     <div class="col-md-4" >
       <div class="card hvr shadow" href="producto.html" style="border:10px double #000000a8;background-color:hsla(247, 10%, 18%, 0.675) ;">
-        <h class="p-1 py-0 mb-0" style="text-align: left;text-decoration: underline;">En stock: {{ fila.stock }}</h>
+        <!-- <h class="p-1 py-0 mb-0" style="text-align: left;text-decoration: underline;">En stock: {{ fila.stock }}</h> -->
         <div class="card-body text-center txt1">
-          <div >
+
             <h3 class="card-title mb-0" style="font-weight:600">{{ fila.nombre }}<br></h3>
-            <h class="py-0 mb-0 mt-0" style="font-size:20px;font-weight: 400;">{{ fila.marca }}</h>
+            <!-- <h class="py-0 mb-0 mt-0" style="font-size:20px;font-weight: 400;">{{ fila.marca }}</h> -->
             <div class="h1 mb-3 mt-2 ">
               
               <img src="static/img/{{ fila.imagen }}" class="text-center w-50 mt-0 tipo2 " style="outline:#73818b9d 3px solid">
-
-              <a href="{% url 'producto' %}" class="stretched-link modalProducto" data-bs-toggle="modal"
-              data-bs-target="#modalProducto" onclick="getElementById('imgProducto').src='static/img/{{ fila.imagen }}'
-                                                    getElementById('productoNombre').innerHTML='{{ fila.nombre }}'
-                                                    getElementById('productoMarca').innerHTML='{{ fila.marca }}'
-                                                    getElementById('productoDescripcion').innerHTML='{{ fila.descripcion }}'
-                                                    getElementById('productoPrecioVenta').innerHTML='{{ fila.precioVenta }}'
-                                                    getElementById('productoPrecioVenta').value='{{ fila.precioVenta }}'
-                                                    getElementById('btnPedir').value = '{{fila.id}}'
-                                                    getElementById('')
-                                                    "></a>
-
+              <div class="p-1 mt-2" style="background:rgba(0, 0, 0, 0.223);border-radius: 10%;border:#32322d solid 1px;">
+                <h class="card-text pb-2" style="min-height:70px;font-size: medium;">{{ fila.descripcion }}</h>
+              </div>
             </div>
-          </div>
-          <div class="p-1" >
-            <p class="card-text pb-2" style="min-height:70px;border-bottom:#2d2e32 solid 1px;">{{ fila.descripcion }}</p>
-            
-            <h5 style="display: inline-block">$</h5>
-            <h5 class="precio" style="display: inline-block" id="precio"> {{ fila.precioVenta }} </h5>
-          </div>
         </div>
-      </div>
-      <div class="text-center mt-1 shadow">
       </div>
     </div>
     {% endfor %}
