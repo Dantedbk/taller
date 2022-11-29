@@ -8,11 +8,19 @@
 {% endblock %}
 
 
+{% block Nosotros %}
+<li class="nav-item s2 p-2" >
+  <a class="nav-link txt1"  style="position: static;" href="#scrollspyHeading2">Nosotros</a>
+</li>
+{% endblock %}
+
 {% block registro %}
 
 {% if user.is_authenticated %}
 
 {% else %}
+
+
 
 
 <form method='POST' class="nav-item dropdown offset-8" style="position:absolute">

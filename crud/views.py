@@ -59,7 +59,8 @@ def home(request):
 def carro(request):
 
     listado = Producto.objects.all()
-
+    listado2 = Usuario.objects.all()
+    listado3 = Servicio.objects.all()
     contexto = {}
 
     contexto = {'listado': listado}

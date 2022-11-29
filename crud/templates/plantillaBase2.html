@@ -59,22 +59,30 @@
         <div class="collapse show navbar-collapse"  id="navbarNav">
 
             <ul class="navbar-nav mx-auto" >
+              {% if user.is_staff %}
+              {% else %}
               <li class="nav-item s2 p-2" >
               <a class="nav-link txt1"  style="position: static;" href="#scrollspyHeading2">Nosotros</a>
               </li>
+              {% endif %}
               <li class="nav-item s2 p-2" >
                 <a class="nav-link txt1"  style="position: static;"href="{% url 'catalogo' %}">Servicios</a>
               </li>
               <li class="nav-item s2 p-2" >
                 <a class="nav-link txt1"  style="position: static;"href="{% url 'agenda' %}">Agendar</a>
               </li>
+              {% if user.is_authenticated %}
+              {% if user.is_staff %}
               <li class="nav-item s2 p-2" >
                 <a class="nav-link txt1"  style="position: static;"href="{% url 'carro' %}">Checkout</a>
               </li>
+              {% if user.is_superuser %}
               <li class="nav-item s2 p-2" >
-                <a class="nav-link txt1"  style="position: static;"href="{% url 'registroservicios' %}">temp</a>
+                <a class="nav-link txt1"  style="position: static;"href="{% url 'registroservicios' %}">Administrar</a>
               </li>
-
+              {% endif %}
+              {% endif %}
+              {% endif %}
             </ul>
                   {% block registro %} {% endblock %}
                   {% if user.is_authenticated %}
@@ -88,7 +96,7 @@
                     <ul class="dropdown-menu dropdown-menu-end">
                       {% if user.is_authenticated %}
                       {% if user.is_superuser %}
-                      <li class="nav-item"><a class="dropdown-item" type="button" href="{% url 'registroproducto' %}">Agregar/eliminar articulos</a></li>
+
                       <li class="nav-item"><a class="dropdown-item" type="button" href="{% url 'registro' %}">Agregar/eliminar/modificar usuarios</a></li>
                       {% endif %}
                       {% endif %}

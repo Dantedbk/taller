@@ -5,6 +5,12 @@
 Registro clientes
 {% endblock %}
 
+{% block Nosotros %}
+<li class="nav-item s2 p-2" >
+  <a class="nav-link txt1"  style="position: static;" href="{% url 'home' %}">home</a>
+</li>
+{% endblock %}
+
 {% block boton%}
 
 {% endblock %}
@@ -102,11 +108,10 @@ Registro clientes
         <h3>Registro Clientes</h3>
       </div>
     </div>
-    <div class="container ">
+    <div class="container " style="color:white;width: 50%;">
       <div class="row">
-        <div class="col-sm ">
           <div class="row mb-2 ">
-            <div class="col-md-2 offset-md-2 px-1">
+            <div class="col-md-2 offset-md-1 px-1">
               Rut
             </div>
             <div class="col-md-5 ">
@@ -121,7 +126,7 @@ Registro clientes
             </div>
           </div>
       <div class="row mb-2 ">
-        <div class="col-md-2 offset-md-2 px-1">
+        <div class="col-md-2 offset-md-1 px-1">
           n. Usuario
         </div>
         <div class="col-md-7 ">
@@ -130,7 +135,7 @@ Registro clientes
         </div>
       </div>
           <div class="row mb-2">
-            <div class="col-md-2 offset-md-2 px-1">
+            <div class="col-md-2 offset-md-1 px-1">
               Nombre
             </div>
             <div class="col-md-7">
@@ -139,7 +144,7 @@ Registro clientes
             </div>
           </div>
           <div class="row mb-2">
-            <div class="col-md-2 offset-md-2 px-1">
+            <div class="col-md-2 offset-md-1 px-1">
               Apellido
             </div>
             <div class="col-md-7">
@@ -148,7 +153,7 @@ Registro clientes
             </div>
           </div>
           <div class="row mb-2">
-            <div class="col-md-2 offset-md-2 px-1">
+            <div class="col-md-2 offset-md-1 px-1">
               Correo
             </div>
             <div class="col-md-7">
@@ -158,7 +163,7 @@ Registro clientes
             </div>
           </div>
           <div class="row mb-2">
-            <div class="col-md-2 offset-md-2 px-1">
+            <div class="col-md-2 offset-md-1 px-1">
               Contraseña
             </div>
             <div class="col-md-7">
@@ -168,7 +173,7 @@ Registro clientes
             </div>
           </div>
           <div class="row mb-2">
-            <div class="col-md-2 offset-md-2 px-1">
+            <div class="col-md-2 offset-md-1 px-1">
               Repetir:
             </div>
             <div class="col-md-7">
@@ -177,12 +182,12 @@ Registro clientes
             </div>
           </div>
           <div class="row mb-2 ">
-            <div class="col-md-2 offset-md-2 px-1">
+            <div class="col-md-2 offset-md-1 px-1">
               Direccion
             </div>
             <div class="col-md-5 ">
               <input type="text" name="txtDireccion" id="txtDireccion" class="txtDireccion form-control" maxlength="8"
-                placeholder="Ej: la planta" title="Ingrese su direccion" value="{{ item.direccion }}">
+                placeholder="Ej: aaaaaaa" title="Ingrese su direccion" value="{{ item.direccion }}">
             </div>
             <div class="col-md-2 mx-0 ">
               <input type="text" name="txtNDireccion" id="txtNDireccion" class="txtNDireccion form-control txtRut" maxlength="6"
@@ -190,7 +195,7 @@ Registro clientes
             </div>
           </div>
           <div class="row mb-2">
-            <div class="col-12 col-md-2 offset-md-2 px-1">
+            <div class="col-12 col-md-2 offset-md-1 px-1">
               Nacimiento
             </div>
             <div class="col-md-2">
@@ -206,15 +211,15 @@ Registro clientes
                 placeholder="año" value="{{ item.aNac }}">
             </div>
 
-            <div class="col-12 col-md-7 offset-md-4">
-              <input id="checkbox-1" class="checkbox-custom checkbox-1 px-0 mx-0 " name="checkbox-1" type="checkbox">
-              <label for="checkbox-1" class="checkbox-custom-label checkbox-1 ">Acepto Terminos y condiciones</label>
+            <div class="col-12 col-md-7 offset-md-3 mt-2" style="color:white" >
+              <input id="checkbox-1" class="checkbox-custom checkbox-1 " name="checkbox-1" type="checkbox">
+              <span>Acepto Terminos y condiciones</span> 
             </div>
 
           </div>
 
           <div class="row">
-            <div class="col-md-2 offset-md-2 px-1">
+            <div class="col-md-2 offset-md-1 px-1">
             </div>
 
             <div class="col-md-7">
@@ -225,70 +230,15 @@ Registro clientes
                 {% if user.is_authenticated %}
                 {% if user.is_superuser %}
               <button type="button" id="btnListar" name="btnListar" data-bs-toggle="modal" 
-              class="btn btn2 btnRegistrar" data-bs-target="#modalUsuarios">Listar</button>
+              class="btn btn2 btnRegistrar" data-bs-target="#modalUsuarios">Listar Usuarios</button>
               {% endif %}
               {% endif %}
 
             </div>
           </div>
 
-        </div>
 
-        <div class="col-sm ">
-          
-          <div class="col-md-0 my-3">
-        <h3 class="txt2"> Medio de Pago </h3>
-          </div>
-          <div class="col-sm ">
-            <div class="row mb-2">
-              <div class="col-md-6 mb-2">
-                <select class="form-select tipo1 form2">
-                  <option value="0">Tipo tarjeta </option>
-                  <option value="1">Crédito</option>
-                  <option value="2">Débito</option>
-                </select>
-              </div>
-              <div class="row mb-2">
-
-            </div>
-            </div>
-            <div class="row mb-2 ">
-              <div class="col-md-0">
-                N°Tarjeta
-              </div>
-              <div class="col-md-8 ">
-                <input type="text" name="txtNtarjeta"
-                  class="txtNtarjeta form-control txtrut tipo1" " maxlength=" 16"
-                  placeholder="Ej: 1234-5678-9101-1213""
-        title=" Ingrese el nro de rut">
-              </div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-md-0">
-                Venc.
-              </div>
-              <div class="col-md-9">
-                <input type="text" name="txtVenc"
-                  class="txtVenc form-control txtrut tipo1 w-50" " maxlength=" 4" placeholder="Ej: 03/02"
-                  title="Ingrese su nombre">
-              </div>
-            </div>
-            <div class="row mb-2 ">
-              <div class="col-md-0">
-                CVV
-              </div>
-              <div class="col-md-6 ">
-                <input type="text" name="txtCVV " class="txtCVV form-control txtrut tipo1 w-50"
-                  maxlength="3" placeholder="Ej: 123">
-              </div>
-              <div class="row mb-2 ">
-                <div class="col-md-5 pt-3 mx-0">
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+        <div class="col-sm-2 "></div>
 
 
 
