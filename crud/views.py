@@ -133,6 +133,11 @@ def catalogo(request):
 
 
 
+def registroServicios(request):
+
+    return render(request, 'registroservicios.html',{})
+
+
 def producto(request):
     return render(request, 'producto.html', {})
 
@@ -314,6 +319,8 @@ def registroProducto(request):
             item.delete()
 
     return render(request, 'registroproducto.html', contexto)
+
+
 
 
 

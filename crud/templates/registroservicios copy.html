@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block tituloPestana %}
-Registro Productos
+Registro Servicios
 {% endblock %}
 
 {% block boton%}
@@ -32,7 +32,7 @@ Registro Productos
     <div class="container-fluid" style="background-color:#4744554f;min-height: 700px;color:aliceblue">
         <div class="col-md-12 mb-4 pb-2">
             <div class="text-center">
-                <h3 class=" pt-5 txt2" id="titulo" value="Registrar Productos">Registrar Productos</h3>
+                <h3 class=" pt-5 txt2" id="titulo" value="Registrar Productos">Registrar Servicios</h3>
             </div>
         </div>
         <div class="container">
@@ -52,7 +52,8 @@ Registro Productos
                     </div>
                     <div class="row mb-2">
                         <div class="col-md-2 offset-md-2 px-1">
-                            P. Costo:
+                            Valor base /<br>
+                            Hora trabajo:
                         </div>
                         <div class="col-md-7">
                             <input type="text" id="txtprecioCosto" name="txtprecioCosto "
@@ -60,42 +61,9 @@ Registro Productos
                                 value="{{ item.precioCosto }}" placeholder=" ">
                         </div>
                     </div>
-                    <div class="row mb-2">
-                        <div class="col-md-2 offset-md-2 px-1">
-                            P. Venta:
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" name="txtPrecioVenta" id="txtPrecioVenta"
-                                class="txtPrecioVenta form-control txtRut tipo1" placeholder=" " maxlength="50"
-                                value="{{ item.precioVenta }}">
-                        </div>
-                    </div>
-
-                    <div class="row mb-2">
-                        <div class="col-md-2 offset-md-2 px-1">
-                            Stock inicial
-                        </div>
-                        <div class="col-md-7">
-                            <input type="text" name="txtStock" id="txtStock" class="txtStock form-control"
-                                value="{{ item.stock }}">
-                        </div>
-                    </div>
 
 
-                    <div class="row mb-2 ">
-                        <div class="col-md-2 offset-md-2 px-1">
-                            Categoria:
-                        </div>
 
-                        <div class="col-md-5 ">
-                            <select class="form-select" style="color:aliceblue;background-color:rgba(0, 0, 0, 0.673)" aria-label="Default select example">
-                                <option selected>Seleccionar</option>
-                                <option value="1">Herramientas</option>
-                                <option value="2">Insumos</option>
-                                <option value="3">Repuestos</option>
-                              </select>
-                        </div>
-                    </div>
                     <div class="row mb-2">
                         <div class="col-md-2 offset-md-2 px-1">
                             Informacion adicional:

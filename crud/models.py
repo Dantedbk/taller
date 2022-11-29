@@ -13,7 +13,6 @@ class Producto(models.Model):
     descripcion = models.CharField(max_length=200)
     precioCosto = models.IntegerField()
     precioVenta = models.IntegerField()
-    marca = models.CharField(max_length=200)
     categoria = models.CharField(max_length=200)
     stock = models.IntegerField()
     imagen = models.ImageField()
@@ -45,6 +44,12 @@ class TipoUsuario(models.Model):
     
     def __str__(self):
         return self.nombre
+
+
+
+
+
+
 
 class Subscripcion(models.Model):
     idUsuario = models.ForeignKey('Usuario', on_delete=models.CASCADE)
@@ -78,7 +83,35 @@ class Marca(models.Model):
     def __str__(self):
         return str(self.nombre)
 
+class Servicio(models.Model):
+    nombre = models.CharField(max_length=100)
+    valor = models.IntegerField()
+    descripcion = models.CharField(max_length=200)
+    imagen = models.ImageField()
 
+    def __str__(self):
+        return str(self.nombre)
+
+
+
+
+class detalleDocumento(models.Model):
+    id_usuario = models.ForeignKey(User,default=None,on_delete=models.CASCADE)
+    nDocumento = models.ForeignKey('Documento', on_delete=models.CASCADE)
+    id_cliente = models.ForeignKey('Usuario', on_delete=models.CASCADE)
+    cantidad = models.IntegerField(null=True)
+    producto = models.ForeignKey('TipoPago', on_delete=models.CASCADE)
+    
+    def __str__(self):
+        return str(self.id_usuario)
+
+class Documento(models.Model):
+    nDocumento = models.AutoField(primary_key=True)
+    tipo = models.CharField(max_length=20)
+    fecha = models.DateTimeField(auto_now_add=True)
+
+    def __int__(self):
+        return self.nDocumento
 
 
 class Carro(models.Model):

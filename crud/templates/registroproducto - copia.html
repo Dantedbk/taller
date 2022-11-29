@@ -1,0 +1,373 @@
+{# comentario si es requerido #}
+{% extends "plantillaBase2.html" %}
+{% load static %}
+
+{% block tituloPestana %}
+Registro Productos
+{% endblock %}
+
+{% block boton%}
+
+{% endblock %}
+
+{% block mensajes %}
+{% if exito %}
+<div class="alert alert-success" role="alert">
+    {{ exito }}
+</div>
+{% endif %}
+{% if error %}
+<div class="alert alert-danger" role="alert">
+    {{ error }}
+</div>
+{% endif %}
+{% endblock %}
+
+{% block contenido %}
+{# #}
+
+<form method="POST" action="{% url 'registroproducto' %}" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="container-fluid" style="background-color:#4744554f;min-height: 700px;color:aliceblue">
+        <div class="col-md-12 mb-4 pb-2">
+            <div class="text-center">
+                <h3 class=" pt-5 txt2" id="titulo" value="Registrar Productos">Registrar Productos</h3>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-2">
+                </div>
+                <div class="col-sm-7 ">
+                    <input type="hidden" name="txtId" id="txtId" class="txtId form-control" value="{{ item.id }}">
+                    <div class="row mb-2">
+                        <div class="col-md-2 offset-md-2 px-1">
+                            Nombre:
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" id="txtNombre" name="txtNombre"
+                                class="txtNombre form-control formLetras tipo1" maxlength="50"
+                                placeholder="Ej: cactus ..">
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-2 offset-md-2 px-1">
+                            P. Costo:
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" id="txtprecioCosto" name="txtprecioCosto "
+                                class="txtprecioCosto form-control txtRut tipo1" maxlength="50"
+                                value="{{ item.precioCosto }}" placeholder=" ">
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-2 offset-md-2 px-1">
+                            P. Venta:
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="txtPrecioVenta" id="txtPrecioVenta"
+                                class="txtPrecioVenta form-control txtRut tipo1" placeholder=" " maxlength="50"
+                                value="{{ item.precioVenta }}">
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-md-2 offset-md-2 px-1">
+                            Stock inicial
+                        </div>
+                        <div class="col-md-7">
+                            <input type="text" name="txtStock" id="txtStock" class="txtStock form-control"
+                                value="{{ item.stock }}">
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-2 ">
+                        <div class="col-md-2 offset-md-2 px-1">
+                            Marca: </div>
+                        <div class="col-md-5 ">
+                            <input type="text" name="txtMarca" id="txtMarca" class="txtMarca form-control tipo1"
+                                maxlength="50" value="{{ item.marca }}" placeholder=" " readonly>
+                        </div>
+                        <div class="col-md-2 ">
+                            <button type="button" class="btn btn2 btnModalMarca" data-bs-toggle="modal"
+                                data-bs-target="#modalMarca">
+                                Escoger </button>
+                        </div>
+                    </div>
+
+
+                    <div class="row mb-2 ">
+                        <div class="col-md-2 offset-md-2 px-1">
+                            Categoria:
+                        </div>
+
+                        <div class="col-md-5 ">
+                            <input type="text" name="txtCategoria" id="txtCategoria"
+                                class="txtCategoria form-control tipo1" maxlength="50" placeholder=""
+                                value="{{ item.categoria }}" readonly>
+                        </div>
+                        <div class="col-md-2 ">
+                            <button type="button" class="btn btn2" data-bs-toggle="modal"
+                                data-bs-target="#modalCategoria">
+                                Escoger
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-md-2 offset-md-2 px-1">
+                            Informacion adicional:
+                        </div>
+                        <div class="col-md-7">
+                            <textarea class="form-control tipo1 txtDescripcion" id="txtDescripcion" rows="3"
+                                id="txtDescripcion" name="txtDescripcion" value="{{ item.txtDescripcion }} "
+                                placeholder=" "></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row mb-2">
+                        <div class="col-md-2 offset-md-2 px-1">
+                            Imagen:
+                        </div>
+                        <div class="col-md-7">
+                            <input type="file" id="imagen" name="imagen" accept="image/*" class="imagen pb-3"
+                                value="{{ item.imagen }}">
+
+                            <button type="submit" id="btnGuardarp" name="btnGuardarp"
+                                class="btn tipo1 float-end btnGuardarp btn2" value="Guardar">Aceptar</button>
+
+                            <button type="button" class="btn btn2" data-bs-toggle="modal"
+                                data-bs-target="#modalProducto">
+                                Escoger
+                            </button>
+
+                            <button type="submit" id="btnEliminarProducto" name="btnEliminarProducto"
+                                class="btn tipo1 btn2" style="background-color:rgba(136, 68, 4, 0.667)"
+                                value="Guardar">Borrar</button>
+
+                            <!------------------------------------------------ modal marca ----------------------------------------------------- -->
+                            <div class="modal blur fade" id="modalMarca" tabindex="-1" aria-labelledby="modalMarca"
+                                aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content"
+                                        style="min-width:550px;background: #0a0e1776;color:aliceblue">
+                                        <div class="modal-header" style="border-bottom:0px">
+                                            <h5 class="modalMarca" id="modalMarca">Crear/Seleccionar Marca</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="row mb-2 ">
+                                                    <div class="col-md-9 ">
+                                                        <input type="hidden" name="txtIdMarca" id="txtIdMarca"
+                                                            class="txtIdMarca form-control" value="{{ item.id }}">
+
+                                                        <input type="text" name="txtNombreMarcaEditar"
+                                                            id="txtNombreMarcaEditar"
+                                                            class="txtNombreMarcaEditar form-control"
+                                                            value="{{ item.nombreMarca }}">
+                                                    </div>
+                                                    <div class="col-md-1">Activo</div>
+                                                    <div class="col-md-1 ">
+                                                        <input type="checkbox" name="chkActivoMarca"
+                                                            class="chkActivoMarca m-2" value="1" {% if item.activo
+                                                            %}{{ 'checked' }}{% endif %}>
+                                                    </div>
+                                                    <div class="col-md-6 py-2">
+                                                        <input type="submit" class="btn btn2 btnGuardarMarca mx-2"
+                                                            name="btnGuardarMarca" id="btnGuardarMarca"
+                                                            href="{% url 'registroproducto' %}" value="Guardar">
+                                                        <input type="submit" class="btn btn2 btnEliminarMarca"
+                                                            name="btnEliminarMarca"
+                                                            style="background-color:rgba(136, 68, 4, 0.667)"
+                                                            value="Eliminar">
+                                                    </div>
+                                                </div>
+                                                {% block listado %}
+                                                {% if listado %}
+                                                <div class="row justify-content-center m-2">
+                                                    <table class="table-borderless" style="border: 0px solid;">
+                                                        <tr>
+                                                            <th>id</th>
+                                                            <th>Nombre</th>
+                                                            <th>Activo</th>
+                                                            <th>Seleccionar</th>
+                                                        </tr>
+                                                        {% for fila in listado %}
+                                                        <tr class="spaceUnder">
+                                                            <td>{{ fila.id }}</td>
+                                                            <td>{{ fila.nombre }}</td>
+                                                            <td>{{ fila.activo }}</td>
+
+                                                            <td><a onclick="
+                                                        document.getElementById('txtMarca').value = '{{fila.nombre}}'"
+                                                                    data-bs-dismiss="modal"
+                                                                    class="btn btn2 btn-primary">Seleccionar</a>
+                                                            </td>
+
+                                                            <td><a onclick="
+                                                        document.getElementById('txtNombreMarcaEditar').value = '{{fila.nombre}}';
+                                                        document.getElementById('txtIdMarca').value = '{{fila.id}}';
+                                                        document.getElementById('btnEliminarMarca').value = '{{fila.id}}'
+                                                        " class="btn btn2 btn-primary btnSeleccionarMarca"
+                                                                    id="btnSeleccionarMarca"
+                                                                    name="btnSeleccionarMarca">Editar</a>
+                                                            </td>
+                                                        </tr>
+
+                                                        {% endfor %}
+                                                    </table>
+                                                    {% endif %}
+                                                </div>
+                                                {% endblock %}
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal blur fade" id="modalProducto" tabindex="-1"
+                                aria-labelledby="modalProducto" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="min-width:550px;background: #a5a58276;">
+                                        <div class="modal-header" style="border-bottom:0px">
+                                            <h5 class="modalProducto" id="modalProducto">Crear/Seleccionar Producto</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+
+                                                {% block listadoProd %}
+                                                {% if listadoProd %}
+                                                <div class="row justify-content-center m-2">
+                                                    <table class="table-borderless">
+                                                        <tr>
+                                                            <th>id</th>
+                                                            <th>Nombre</th>
+                                                            <th>Precio</th>
+                                                            <th>Seleccionar</th>
+                                                        </tr>
+                                                        {% for fila in listadoProd %}
+                                                        <tr class="spaceUnder">
+                                                            <td>{{ fila.id }}</td>
+                                                            <td>{{ fila.nombre }}</td>
+                                                            <td>${{ fila.precioCosto }}</td>
+
+                                                            <td><a onclick="document.getElementById('txtNombre').value = '{{ fila.nombre }}';
+                                                        document.getElementById('txtprecioCosto').value = '{{ fila.precioCosto }}';
+                                                        document.getElementById('txtId').value = '{{ fila.id }}';
+                                                        document.getElementById('txtStock').value = '{{ fila.stock }}';
+                                                        document.getElementById('txtPrecioVenta').value = '{{ fila.precioVenta }}';
+                                                        document.getElementById('txtMarca').value = '{{ fila.marca }}';
+                                                        document.getElementById('txtCategoria').value = '{{ fila.categoria }}';
+                                                        document.getElementById('txtDescripcion').value = '{{ fila.descripcion }}';
+                                                        " data-bs-dismiss="modal" class="btn btn2  m-1">Seleccionar</a>
+                                                            </td>
+                                                        </tr>
+
+                                                        {% endfor %}
+                                                    </table>
+                                                    {% endif %}
+                                                </div>
+                                                {% endblock %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!------------------------------------------------ modal categoria ----------------------------------------------------- -->
+
+
+
+
+                            <div class="modal blur fade" id="modalCategoria" tabindex="-1"
+                                aria-labelledby="modalCategoria" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content" style="min-width:550px;background: #a5a58276;">
+                                        <div class="modal-header" style="border-bottom:0px">
+                                            <h5 class="modalCategoria" id="modalCategoria">Crear/Seleccionar Categoria
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="row">
+                                                <div class="row mb-2 ">
+                                                    <div class="col-md-9 ">
+
+                                                        <input type="hidden" name="txtIdCategoria" id="txtIdCategoria"
+                                                            class="txtIdCategoria form-control" value="{{ item.id }}">
+                                                        <input type="text" name="txtNombreCategoriaEditar"
+                                                            id="txtNombreCategoriaEditar"
+                                                            class="txtNombreCategoriaEditar form-control"
+                                                            value="{{ item.nombreCategoria }}">
+                                                    </div>
+                                                    <div class="col-md-1">Activo</div>
+                                                    <div class="col-md-1 ">
+                                                        <input type="checkbox" name="chkActivoCategoria"
+                                                            class="chkActivoCategoria m-2" value="1" {% if item.activo
+                                                            %}{{ 'checked' }}{% endif %}>
+                                                    </div>
+                                                    <div class="col-md-6 py-2">
+                                                        <input type="submit" class="btn btn2 btnGuardarCategoria mx-2"
+                                                            name="btnGuardarCategoria" id="btnGuardarCategoria"
+                                                            href="{% url 'registroproducto' %}" value="Guardar">
+                                                        <input type="submit" class="btn btn2 btnEliminarCategoria"
+                                                            name="btnEliminarCategoria"
+                                                            style="background-color:rgba(136, 68, 4, 0.667)"
+                                                            value="Eliminar">
+                                                    </div>
+                                                </div>
+                                                {% block listado2 %}
+                                                {% if listado2 %}
+                                                <div class="row justify-content-center m-2">
+                                                    <table class="table-borderless" style="border: 0px solid;">
+                                                        <tr>
+                                                            <th>id</th>
+                                                            <th>Nombre</th>
+                                                            <th>Activo</th>
+                                                            <th>Seleccionar</th>
+                                                        </tr>
+                                                        {% for fila in listado2 %}
+                                                        <tr class="spaceUnder">
+                                                            <td>{{ fila.id }}</td>
+                                                            <td>{{ fila.nombre }}</td>
+                                                            <td>{{ fila.activo }}</td>
+
+                                                            <td><a onclick="document.getElementById('txtCategoria').value = '{{fila.nombre}}'"
+                                                                    data-bs-dismiss="modal"
+                                                                    class="btn btn2 btn-primary ">Seleccionar</a></td>
+
+                                                            <td><a onclick="document.getElementById('txtNombreCategoriaEditar').value = '{{fila.nombre}}';
+                                                            document.getElementById('txtIdCategoria').value = '{{fila.id}}';
+                                                            document.getElementById('btnEliminarCategoria').value = '{{fila.id}}'
+                                                            " class="btn btn2 btn-primary btnSeleccionarCategoria"
+                                                                    id="btnSeleccionarCategoria"
+                                                                    name="btnSeleccionarCategoria">Editar</a></td>
+
+                                                        </tr>
+
+                                                        {% endfor %}
+                                                    </table>
+                                                    {% endif %}
+                                                </div>
+                                                {% endblock %}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {% endblock %}

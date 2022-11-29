@@ -12,6 +12,7 @@ urlpatterns = [
     path('venta', views.venta , name='venta'),
     path('registro', views.registro , name='registro'),
     path('registroproducto', views.registroProducto , name='registroproducto'),
+    path('registroservicios', views.registroServicios , name='registroservicios'),
     path('carro', views.carro , name='carro'),
     path('perfil', views.perfil , name='perfil'),
     path('logoutUser', views.logoutUser , name='logoutUser'),
