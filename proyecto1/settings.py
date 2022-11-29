@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'crud',
     'rest_framework',
     'api',
-    'mathfilters',
+    'mathfilters'
 ]
 
 MIDDLEWARE = [

@@ -9,13 +9,11 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.models import User
-
 import math 
 import random
 
-
-
 listadoProd = Producto.objects.all()
+
 
 def logoutUser(request):
     Carro.objects.all().delete()
@@ -26,6 +24,10 @@ def logoutUser(request):
 
 def perfil(request):
     return render(request,'perfil.html',{})
+
+def agenda(request):
+    
+    return render(request,'agenda.html',{})
 
 
 
