@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "color-calendar": "^1.0.7",
+    "fullcalendar": "^5.11.3",
+    "js-datepicker": "^5.18.1",
+    "tempusdominus-bootstrap-4": "^5.39.2"
+  }
+}
